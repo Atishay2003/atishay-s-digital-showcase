@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Mail, Phone, Linkedin, Github, Send, MapPin } from "lucide-react";
+import { Mail, Linkedin, Github, Send, MapPin } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -15,12 +15,6 @@ const contactInfo = [
     label: "Email",
     value: "atishayjayfale20@gmail.com",
     href: "mailto:atishayjayfale20@gmail.com",
-  },
-  {
-    icon: Phone,
-    label: "Phone",
-    value: "+91 7249009002",
-    href: "tel:+917249009002",
   },
   {
     icon: Linkedin,
