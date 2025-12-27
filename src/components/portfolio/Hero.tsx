@@ -109,9 +109,11 @@ export const Hero = () => {
                 Contact Me
               </a>
             </Button>
-            <Button size="lg" variant="ghost" className="hover:bg-primary/10" disabled>
-              <Download className="mr-2 h-4 w-4" />
-              Resume
+            <Button size="lg" variant="ghost" className="hover:bg-primary/10" asChild>
+              <a href="/Atishay_Jayfale_Resume.pdf" download>
+                <Download className="mr-2 h-4 w-4" />
+                Resume
+              </a>
             </Button>
           </div>
 
