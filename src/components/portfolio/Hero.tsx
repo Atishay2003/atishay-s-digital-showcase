@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { ArrowDown, Download, Mail, Github, Linkedin } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import profilePic from "@/assets/profile-pic.png";
 
 const roles = [
   "Python Developer",
@@ -52,12 +53,14 @@ export const Hero = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          {/* Profile Image Placeholder */}
+          {/* Profile Image */}
           <div className="mb-8 animate-fade-in">
-            <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-primary to-accent p-1">
-              <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
-                <span className="text-4xl font-bold gradient-text">AJ</span>
-              </div>
+            <div className="w-40 h-40 mx-auto rounded-full bg-gradient-to-r from-primary to-accent p-1 shadow-2xl shadow-primary/20">
+              <img
+                src={profilePic}
+                alt="Atishay Jayfale"
+                className="w-full h-full rounded-full object-cover"
+              />
             </div>
           </div>
 
