@@ -125,7 +125,7 @@ export const Hero = () => {
               </a>
             </Button>
             <Button variant="ghost" size="icon" className="hover:bg-primary/10" asChild>
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/atishayjayfale" target="_blank" rel="noopener noreferrer">
                 <Github className="h-5 w-5" />
               </a>
             </Button>
