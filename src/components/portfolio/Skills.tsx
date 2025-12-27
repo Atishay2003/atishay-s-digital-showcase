@@ -5,6 +5,7 @@ import {
   Code, Database, Brain, Cpu, Bot, Sparkles,
   FileCode, Terminal, BarChart3, Eye
 } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const skillCategories = [
   {
@@ -105,83 +106,87 @@ export const Skills = () => {
   return (
     <section id="skills" className="py-20 bg-card/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            A comprehensive skill set spanning programming languages, AI/ML technologies, and modern tools.
-          </p>
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              My <span className="gradient-text">Skills</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              A comprehensive skill set spanning programming languages, AI/ML technologies, and modern tools.
+            </p>
+          </div>
+        </AnimatedSection>
 
         {/* Category Tabs */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          {skillCategories.map((category) => (
-            <Button
-              key={category.id}
-              variant={activeCategory === category.id ? "default" : "outline"}
-              className={
-                activeCategory === category.id
-                  ? "bg-primary hover:bg-primary/90"
-                  : "border-border/50 hover:bg-primary/10"
-              }
-              onClick={() => setActiveCategory(category.id)}
-            >
-              <category.icon className="mr-2 h-4 w-4" />
-              {category.label}
-            </Button>
-          ))}
-        </div>
+        <AnimatedSection delay={100}>
+          <div className="flex flex-wrap justify-center gap-2 mb-12">
+            {skillCategories.map((category) => (
+              <Button
+                key={category.id}
+                variant={activeCategory === category.id ? "default" : "outline"}
+                className={
+                  activeCategory === category.id
+                    ? "bg-primary hover:bg-primary/90"
+                    : "border-border/50 hover:bg-primary/10"
+                }
+                onClick={() => setActiveCategory(category.id)}
+              >
+                <category.icon className="mr-2 h-4 w-4" />
+                {category.label}
+              </Button>
+            ))}
+          </div>
+        </AnimatedSection>
 
         {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {currentCategory?.skills.map((skill, index) => {
             const SkillIcon = skillIcons[skill.name] || Code;
             return (
-              <Card
-                key={skill.name}
-                className="glass border-border/50 hover-lift animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
-                      <SkillIcon className="h-5 w-5 text-primary" />
+              <AnimatedSection key={skill.name} animation="scale" delay={index * 100}>
+                <Card className="glass border-border/50 hover-lift">
+                  <CardContent className="p-6">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                        <SkillIcon className="h-5 w-5 text-primary" />
+                      </div>
+                      <div className="flex-1">
+                        <h4 className="font-medium">{skill.name}</h4>
+                        <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <h4 className="font-medium">{skill.name}</h4>
-                      <span className="text-sm text-muted-foreground">{skill.level}%</span>
+                    <div className="skill-bar">
+                      <div
+                        className="skill-bar-fill"
+                        style={{ width: `${skill.level}%` }}
+                      />
                     </div>
-                  </div>
-                  <div className="skill-bar">
-                    <div
-                      className="skill-bar-fill"
-                      style={{ width: `${skill.level}%` }}
-                    />
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             );
           })}
         </div>
 
         {/* All Skills Summary */}
-        <div className="mt-16 glass rounded-xl p-8">
-          <h3 className="text-xl font-semibold mb-6 text-center">Technologies I Work With</h3>
-          <div className="flex flex-wrap justify-center gap-3">
-            {skillCategories.flatMap((cat) =>
-              cat.skills.map((skill) => (
-                <span
-                  key={skill.name}
-                  className="px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-primary hover:bg-primary/20 transition-colors cursor-default"
-                >
-                  {skill.name}
-                </span>
-              ))
-            )}
+        <AnimatedSection delay={200}>
+          <div className="mt-16 glass rounded-xl p-8">
+            <h3 className="text-xl font-semibold mb-6 text-center">Technologies I Work With</h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {skillCategories.flatMap((cat) =>
+                cat.skills.map((skill) => (
+                  <span
+                    key={skill.name}
+                    className="px-4 py-2 rounded-full bg-primary/10 text-sm font-medium text-primary hover:bg-primary/20 transition-colors cursor-default"
+                  >
+                    {skill.name}
+                  </span>
+                ))
+              )}
+            </div>
           </div>
-        </div>
+        </AnimatedSection>
       </div>
     </section>
   );

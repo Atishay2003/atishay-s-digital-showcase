@@ -1,5 +1,6 @@
 import { Code, Brain, Cpu, Award } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { AnimatedSection } from "./AnimatedSection";
 
 const highlights = [
   {
@@ -28,15 +29,17 @@ export const About = () => {
   return (
     <section id="about" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              About <span className="gradient-text">Me</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+          </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
-          <div className="animate-slide-up">
+          <AnimatedSection animation="fade-right">
             <h3 className="text-2xl font-semibold mb-6">
               Passionate about building <span className="gradient-text">intelligent solutions</span>
             </h3>
@@ -71,23 +74,21 @@ export const About = () => {
                 <div className="text-sm text-muted-foreground">Graduating</div>
               </div>
             </div>
-          </div>
+          </AnimatedSection>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {highlights.map((item, index) => (
-              <Card
-                key={item.title}
-                className="glass border-border/50 hover-lift animate-fade-in"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
-                    <item.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <h4 className="font-semibold mb-2">{item.title}</h4>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </CardContent>
-              </Card>
+              <AnimatedSection key={item.title} animation="fade-left" delay={index * 100}>
+                <Card className="glass border-border/50 hover-lift h-full">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4">
+                      <item.icon className="h-6 w-6 text-primary" />
+                    </div>
+                    <h4 className="font-semibold mb-2">{item.title}</h4>
+                    <p className="text-sm text-muted-foreground">{item.description}</p>
+                  </CardContent>
+                </Card>
+              </AnimatedSection>
             ))}
           </div>
         </div>
