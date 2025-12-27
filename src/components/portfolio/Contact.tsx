@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { AnimatedSection } from "./AnimatedSection";
 
 const contactInfo = [
   {
@@ -86,20 +87,22 @@ export const Contact = () => {
   return (
     <section id="contact" className="py-20 bg-card/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Get In <span className="gradient-text">Touch</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            I'm always open to discussing new projects, opportunities, or just having a chat.
-          </p>
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              Get In <span className="gradient-text">Touch</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              I'm always open to discussing new projects, opportunities, or just having a chat.
+            </p>
+          </div>
+        </AnimatedSection>
 
         <div className="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
           {/* Contact Info */}
           <div className="space-y-6">
-            <div className="animate-fade-in">
+            <AnimatedSection animation="fade-right">
               <h3 className="text-2xl font-semibold mb-6">
                 Let's work <span className="gradient-text">together</span>
               </h3>
@@ -107,46 +110,44 @@ export const Contact = () => {
                 Whether you have a project in mind, want to collaborate, or just want to say hello,
                 I'd love to hear from you. Fill out the form or reach out through any of the channels below.
               </p>
-            </div>
+            </AnimatedSection>
 
             <div className="grid gap-4">
               {contactInfo.map((item, index) => (
-                <Card
-                  key={item.label}
-                  className="glass border-border/50 hover-lift animate-fade-in"
-                  style={{ animationDelay: `${index * 0.1}s` }}
-                >
-                  <CardContent className="p-4">
-                    {item.href ? (
-                      <a
-                        href={item.href}
-                        target={item.href.startsWith("http") ? "_blank" : undefined}
-                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                        className="flex items-center gap-4 group"
-                      >
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <item.icon className="h-5 w-5 text-primary" />
+                <AnimatedSection key={item.label} animation="fade-right" delay={index * 100}>
+                  <Card className="glass border-border/50 hover-lift">
+                    <CardContent className="p-4">
+                      {item.href ? (
+                        <a
+                          href={item.href}
+                          target={item.href.startsWith("http") ? "_blank" : undefined}
+                          rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="flex items-center gap-4 group"
+                        >
+                          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+                            <item.icon className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">{item.label}</p>
+                            <p className="font-medium group-hover:text-primary transition-colors">
+                              {item.value}
+                            </p>
+                          </div>
+                        </a>
+                      ) : (
+                        <div className="flex items-center gap-4">
+                          <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
+                            <item.icon className="h-5 w-5 text-primary" />
+                          </div>
+                          <div>
+                            <p className="text-sm text-muted-foreground">{item.label}</p>
+                            <p className="font-medium">{item.value}</p>
+                          </div>
                         </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground">{item.label}</p>
-                          <p className="font-medium group-hover:text-primary transition-colors">
-                            {item.value}
-                          </p>
-                        </div>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                          <item.icon className="h-5 w-5 text-primary" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-muted-foreground">{item.label}</p>
-                          <p className="font-medium">{item.value}</p>
-                        </div>
-                      </div>
-                    )}
-                  </CardContent>
-                </Card>
+                      )}
+                    </CardContent>
+                  </Card>
+                </AnimatedSection>
               ))}
             </div>
 
@@ -171,7 +172,8 @@ export const Contact = () => {
           </div>
 
           {/* Contact Form */}
-          <Card className="glass border-border/50 animate-fade-in" style={{ animationDelay: "0.3s" }}>
+          <AnimatedSection animation="fade-left" delay={200}>
+            <Card className="glass border-border/50">
             <CardContent className="p-6 md:p-8">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -246,6 +248,7 @@ export const Contact = () => {
               </form>
             </CardContent>
           </Card>
+          </AnimatedSection>
         </div>
       </div>
     </section>

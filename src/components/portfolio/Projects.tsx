@@ -1,6 +1,7 @@
-import { ExternalLink, Award, Zap, Users, Egg, MessageSquare } from "lucide-react";
+import { Award, Zap, Users, Egg, MessageSquare } from "lucide-react";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { AnimatedSection } from "./AnimatedSection";
 
 const projects = [
   {
@@ -59,64 +60,64 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            My <span className="gradient-text">Projects</span>
-          </h2>
-          <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            A collection of projects showcasing my skills in AI/ML, IoT, and web development.
-          </p>
-        </div>
+        <AnimatedSection>
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              My <span className="gradient-text">Projects</span>
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-primary to-accent mx-auto rounded-full" />
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              A collection of projects showcasing my skills in AI/ML, IoT, and web development.
+            </p>
+          </div>
+        </AnimatedSection>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {projects.map((project, index) => (
-            <Card
-              key={project.title}
-              className="glass border-border/50 hover-lift group animate-fade-in overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardHeader className="pb-4">
-                <div className="flex items-start justify-between">
-                  <div
-                    className={`w-12 h-12 rounded-lg bg-gradient-to-r ${project.color} flex items-center justify-center`}
-                  >
-                    <project.icon className="h-6 w-6 text-primary-foreground" />
-                  </div>
-                  <Badge variant="secondary" className="bg-secondary/80">
-                    {project.category}
-                  </Badge>
-                </div>
-                <h3 className="text-xl font-semibold mt-4 group-hover:text-primary transition-colors">
-                  {project.title}
-                </h3>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {project.achievement && (
-                  <div className="mb-4 p-3 rounded-lg bg-primary/10 border border-primary/20">
-                    <p className="text-sm font-medium text-primary">
-                      {project.achievement}
-                    </p>
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-2">
-                  {project.techStack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="outline"
-                      className="text-xs border-border/50"
+            <AnimatedSection key={project.title} animation="fade-up" delay={index * 100}>
+              <Card className="glass border-border/50 hover-lift group overflow-hidden h-full">
+                <CardHeader className="pb-4">
+                  <div className="flex items-start justify-between">
+                    <div
+                      className={`w-12 h-12 rounded-lg bg-gradient-to-r ${project.color} flex items-center justify-center`}
                     >
-                      {tech}
+                      <project.icon className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <Badge variant="secondary" className="bg-secondary/80">
+                      {project.category}
                     </Badge>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </div>
+                  <h3 className="text-xl font-semibold mt-4 group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+                    {project.description}
+                  </p>
+
+                  {project.achievement && (
+                    <div className="mb-4 p-3 rounded-lg bg-primary/10 border border-primary/20">
+                      <p className="text-sm font-medium text-primary">
+                        {project.achievement}
+                      </p>
+                    </div>
+                  )}
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.techStack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="outline"
+                        className="text-xs border-border/50"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </AnimatedSection>
           ))}
         </div>
       </div>
