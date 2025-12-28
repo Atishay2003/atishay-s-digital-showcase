@@ -1,4 +1,4 @@
-import { GraduationCap, School, BookOpen } from "lucide-react";
+import { GraduationCap, School } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { AnimatedSection } from "./AnimatedSection";
 
@@ -11,6 +11,14 @@ const education = [
     icon: GraduationCap,
     description:
       "Specialized in Python programming, Data Science, AI/ML, and IoT development. Participated in various hackathons and competitions.",
+  },
+  {
+    degree: "Grade XII (HSC)",
+    institution: "Yashwant Mahavidyalaya, Nanded",
+    duration: "2021",
+    grade: "90.33%",
+    icon: School,
+    description: "HSC Board",
   },
 ];
 
