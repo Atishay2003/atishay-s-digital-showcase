@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { supabase } from "@/integrations/supabase/client";
+import { supabase, isSupabaseConfigured } from "@/integrations/supabase/client";
 import { AnimatedSection } from "./AnimatedSection";
 
 const contactInfo = [
@@ -45,6 +45,16 @@ export const Contact = () => {
     setIsLoading(true);
 
     try {
+      if (!isSupabaseConfigured) {
+        // If Supabase is not configured, provide a fallback
+        toast({
+          title: "Contact Form",
+          description: "For now, please email me directly at atishayjayfale20@gmail.com. Thank you!",
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        return;
+      }
+
       const { error } = await supabase.functions.invoke("send-contact-email", {
         body: formData,
       });
@@ -61,7 +71,7 @@ export const Contact = () => {
       console.error("Error sending message:", error);
       toast({
         title: "Error",
-        description: "Failed to send message. Please try again or email me directly.",
+        description: "Failed to send message. Please try again or email me directly at atishayjayfale20@gmail.com",
         variant: "destructive",
       });
     } finally {
